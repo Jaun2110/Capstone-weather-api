@@ -5,6 +5,8 @@ import axios from "axios";
 const app = express();
 const port = 5000;
 
+app.use(express.static("public"));
+
 app.use(bodyParser.urlencoded({extended: true}));
 
  const danaCoordinates = "34.1962,22.0536"
@@ -33,7 +35,7 @@ app.get("/", async(req,res) =>{
         const currentProperties = jsObject.current
 
        
-      //  console.log(currentProperties);
+      //  console.log(jsString);
          
         // separate out specific part of data
         // response = JSON.parse(jsonRespons
