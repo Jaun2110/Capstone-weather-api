@@ -22,28 +22,33 @@ const options = {
   }
 };
 
-
+let lat ="";
+let lon ="";
 
 app.get("/", async(req,res) =>{
-    try {
-        var response = await axios.request(options);
-       let result = response.data;
-        let jsString = JSON.stringify(result);
-        let jsObject = JSON.parse(jsString);
+   res.render("weatherData.ejs");
+        //  
+});
 
-        const locationData =jsObject.location;
-        const currentProperties = jsObject.current
-
-       
-      //  console.log(jsString);
-         
-        // separate out specific part of data
-        // response = JSON.parse(jsonRespons
-        res.render("index.ejs",{wholeObj:jsObject})
-    } catch (error) {
-        console.error(error);
+app.post("/", async(req,res) =>{
+  const options = {
+    method: 'GET',
+    url: 'https://weatherapi-com.p.rapidapi.com/current.json',
+    params: {q: `${req.body.latittude},${req.body.longitude}`},
+    headers: {
+      'X-RapidAPI-Key': 'c93cedb6bfmshdbd8f5598e8443cp18397ejsn066c2e325810',
+      'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
     }
-})
+  };
+  
+  try {
+    const response = await axios.request(options);
+    console.log(response.data);
+  } catch (error) {
+    console.error(error);
+  }
+  res.render("index.ejs",{wholeObj:jsObject})
+});
 
 
 
