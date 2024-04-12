@@ -11,43 +11,37 @@
   
 <div class="container">
     <div class="row border border-dark">
-<div class="col d-flex justify-content-center">Location info
-</div>
-</div>
+        <div class="col d-flex justify-content-center">Location info
+        </div>
+    </div>
 <% for (const prop in wholeObj.location){%>
     <div class="row border border-dark d-flex ">
-        <div class="col-6 d-flex justify-content-center g-3"><%= prop  + ":"%></div>
-        <div class="col-6 d-flex justify-content-center"><%= wholeObj.location[prop] %></div>
+        <div class="col-6 d-flex justify-content-center g-3 "><%= prop  + ":"%></div>
+        <div class="col-6 d-flex justify-content-center g3"><%= wholeObj.location[prop] %></div>
     </div>
 
 <%} %>
-</div>
-<div class="row border ">
-    <div class="col d-flex justify-content-center mt-3">Current info
+    
+        <div id="current-content_header" class="row border border-dark ">
+            <div class="col-12 d-flex justify-content-center ">Current info
 
-    </div> 
+            </div> 
 
-</div>
+        </div>
 <% for(const prop in wholeObj.current){ %>
-<div class="row ">
-    <div class="col-6 d-flex justify-content-center"><%= prop %></div>
-    <div class="col-6 d-flex justify-content-center"><%=wholeObj.current[prop]  %></div>
+<div class="row  border border-dark ">
+    <div class="col-6 d-flex justify-content-center g-3"><%= prop %></div>
+    <div class="col-6 d-flex justify-content-center g-3"><%=wholeObj.current[prop]  %>
+    </div>
 </div>
 
 <%} %>
-   
-   
-    
-        
-        
-       
-       
-
-   
    </div>
+
 
     
     
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 </body>
 </html>
