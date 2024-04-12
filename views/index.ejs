@@ -11,7 +11,7 @@
     
   
 <div class="container">
-    <% if (locals.weatherObj){ %>
+    
         <article>
             <h1>Weather viewer</h1>
             <p><div class="row border border-dark">
@@ -21,30 +21,28 @@
         <% for (const prop in wholeObj.location){%>
             <div class="row border border-dark d-flex ">
                 <div class="col-6 d-flex justify-content-center  "><%= prop  + ":"%></div>
-                <div class="col-6 d-flex justify-content-left "><%= wholeObj.location[prop] %></div>
+                <div class="col-6 d-flex justify-content-right "><%= wholeObj.location[prop] %></div>
             </div>
-        
-        <%} %>
+            <% } %>
+     
             
                 <div id="current-content_header" class="row border border-dark ">
-                    <div class="col-12 d-flex justify-content-center ">Current info
+                    <div class="col-12 d-flex justify-content-center py-2 ">Current Weather condition
         
                     </div> 
         
                 </div>
         <% for(const prop in wholeObj.current){ %>
         <div class="row  border border-dark ">
-            <div class="col-6 d-flex justify-content-left "><%= prop %></div>
-            <div class="col-6 d-flex justify-content-left g-2"><%=wholeObj.current[prop]  %>
+            <div class="col-6 d-flex justify-content-center "><%= prop %></div>
+            <div class="col-6 d-flex justify-content-right"><%=wholeObj.current[prop]  %>
             </div>
         </div>
         
         <%} %>
            </p>
           </article>
-        <% } else{%>
-            <%-include('weatherData.ejs') %>
-            <%}%>
+        
    </div>
 
 

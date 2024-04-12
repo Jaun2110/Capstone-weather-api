@@ -14,28 +14,30 @@ app.get("/", (req,res) =>{
          
 });
 
-// app.post("/", async(req,res) =>{
-//   const options = {
-//     method: 'GET',
-//     url: 'https://weatherapi-com.p.rapidapi.com/current.json',
-//     params: {q: `${req.body.latittude},${req.body.longitude}`},
-//     headers: {
-//       'X-RapidAPI-Key': 'c93cedb6bfmshdbd8f5598e8443cp18397ejsn066c2e325810',
-//       'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
-//     }
-//   };
+app.post("/", async(req,res) =>{
+  // console.log(`${req.body.latitude},${req.body.longitude}`)
+  const options = {
+    method: 'GET',
+    url: 'https://weatherapi-com.p.rapidapi.com/current.json',
+    params: {q: `${req.body.latitude},${req.body.longitude}`},
+    headers: {
+      'X-RapidAPI-Key': 'c93cedb6bfmshdbd8f5598e8443cp18397ejsn066c2e325810',
+      'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
+    }
+  };
   
-//   try {
-//     const response = await axios.request(options);
-//     const responseString = JSON.stringify(response.data);
-//     const jsObject = JSON.parse(responseString);
-//     res.render("index.ejs",{wholeObj:jsObject})
+  try {
+    const response = await axios.request(options);
+    const responseString = JSON.stringify(response.data);
+    const jsObject = JSON.parse(responseString);
+    res.render("index.ejs",{wholeObj:jsObject})
+    // console.log(jsObject)
     
-//   } catch (error) {
-//     console.error(error);
-//   }
+  } catch (error) {
+    console.error(error);
+  }
   
-// });
+});
 
 
 
