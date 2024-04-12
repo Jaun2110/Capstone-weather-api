@@ -8,40 +8,41 @@
     <title>Weather viewer</title>
 </head>
 <body>
-   
+
   
 <div class="container">
-    <article>
-        <h1>Weather viewer</h1>
-        <p><div class="row border border-dark">
-            <div class="col d-flex justify-content-center">Location info
-            </div>
-        </div>
-    <% for (const prop in wholeObj.location){%>
-        <div class="row border border-dark d-flex ">
-            <div class="col-6 d-flex justify-content-center  "><%= prop  + ":"%></div>
-            <div class="col-6 d-flex justify-content-left "><%= wholeObj.location[prop] %></div>
-        </div>
     
-    <%} %>
+        <article>
+            <h1>Weather viewer</h1>
+            <p><div class="row border border-dark">
+                <div class="col d-flex justify-content-center">Location info
+                </div>
+            </div>
+        <% for (const prop in wholeObj.location){%>
+            <div class="row border border-dark d-flex ">
+                <div class="col-6 d-flex justify-content-center  "><%= prop  + ":"%></div>
+                <div class="col-6 d-flex justify-content-right "><%= wholeObj.location[prop] %></div>
+            </div>
+            <% } %>
+     
+            
+                <div id="current-content_header" class="row border border-dark ">
+                    <div class="col-12 d-flex justify-content-center py-2 ">Current Weather condition
         
-            <div id="current-content_header" class="row border border-dark ">
-                <div class="col-12 d-flex justify-content-center ">Current info
-    
-                </div> 
-    
+                    </div> 
+        
+                </div>
+        <% for(const prop in wholeObj.current){ %>
+        <div class="row  border border-dark ">
+            <div class="col-6 d-flex justify-content-center "><%= prop %></div>
+            <div class="col-6 d-flex justify-content-right"><%=wholeObj.current[prop]  %>
             </div>
-    <% for(const prop in wholeObj.current){ %>
-    <div class="row  border border-dark ">
-        <div class="col-6 d-flex justify-content-left "><%= prop %></div>
-        <div class="col-6 d-flex justify-content-left g-2"><%=wholeObj.current[prop]  %>
         </div>
-    </div>
-    
-    <%} %>
-       </p>
-      </article>
-    
+        
+        <%} %>
+           </p>
+          </article>
+        
    </div>
 
 
