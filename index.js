@@ -16,10 +16,26 @@ app.get("/", (req,res) =>{
 
 app.post("/", async(req,res) =>{
   // console.log(`${req.body.latitude},${req.body.longitude}`)
+ const API_Key = '0148c874ffdd49eebd1ddbfb0dcddb78';
+ let city = req.body.city;
+ let country = req.body.country;
+ const API_URL = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(city)},${encodeURIComponent(country)}&key=${API_Key}`;
+ try {
+  
+  const response = await axios.get(API_URL);
+  
+  // var resultParsed = JSON.parse
+ } catch (error) {
+  console.error(error.message);
+ }
+  
+});
+
+async function getWeatherData(latitude,longitude){
   const options = {
     method: 'GET',
     url: 'https://weatherapi-com.p.rapidapi.com/current.json',
-    params: {q: `${req.body.latitude},${req.body.longitude}`},
+    params: {q: `${latitude},${longitude}`},
     headers: {
       'X-RapidAPI-Key': 'c93cedb6bfmshdbd8f5598e8443cp18397ejsn066c2e325810',
       'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
@@ -36,10 +52,8 @@ app.post("/", async(req,res) =>{
   } catch (error) {
     console.error(error);
   }
-  
-});
 
-
+}
 
 
 
