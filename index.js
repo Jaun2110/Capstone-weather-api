@@ -23,8 +23,16 @@ app.post("/", async(req,res) =>{
  try {
   
   const response = await axios.get(API_URL);
-  
-  // var resultParsed = JSON.parse
+  // console.log(response);
+  const resultString = JSON.stringify(response.data);
+   const resultObj = JSON.parse(resultString);
+  const {lat,lng} = resultObj.results[0].geometry;
+  // console.log(resultObj.results[0].geometry.lng);
+  console.log(`lat: + ${lat}`);
+  console.log(`lon: + ${lng}`);
+//  call weather api
+getWeatherData(lat,lng);
+
  } catch (error) {
   console.error(error.message);
  }
