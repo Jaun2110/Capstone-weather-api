@@ -35,7 +35,7 @@ app.post("/", async(req,res) =>{
   console.log(`lon: + ${lng}`);
 //  call weather api
   const jsObject = await getWeatherData(lat,lng);
-  console.log(jsObject);
+
 
 //  generate index.ejs
 res.render('index.ejs',{wholeObj: jsObject});
@@ -60,7 +60,9 @@ async function getWeatherData(latitude,longitude){
   
   try {
     const response = await axios.request(options);
+    console.log(response.data);
 return response.data;
+
     // const responseString = JSON.stringify(response.data);
     // const jsObject = JSON.parse(responseString);
     // res.render("index.ejs",{wholeObj:jsObject})
