@@ -20,8 +20,8 @@
             </div>
         <% for (const prop in wholeObj.location){%>
             <div class="row border border-dark d-flex ">
-                <div class="col-6 d-flex justify-content-center  "><%= prop  + ":"%></div>
-                <div class="col-6 d-flex justify-content-right "><%= wholeObj.location[prop] %></div>
+                <div class="col-7 d-flex justify-content-center  "><%= prop  + ":"%></div>
+                <div class="col-5 d-flex justify-content-right "><%= wholeObj.location[prop] %></div>
             </div>
             <% } %>
      
@@ -32,14 +32,39 @@
                     </div> 
         
                 </div>
-        <% for(const prop in wholeObj.current){ %>
+       
         <div class="row  border border-dark ">
-            <div class="col-6 d-flex justify-content-center "><%= prop %></div>
-            <div class="col-6 d-flex justify-content-right"><%=wholeObj.current[prop]  %>
+            <div class="col-7 d-flex justify-content-center "> Temparuture °C :</div>
+            <div class="col-5 d-flex justify-content-right"><%= wholeObj.current.temp_c %>
+                
             </div>
         </div>
-        
-        <%} %>
+        <div class="row  border border-dark ">
+            <div class="col-7 d-flex justify-content-center "> Condition:</div>
+            <div class="col-5 d-flex justify-content-right"><%= wholeObj.current.condition.text %>
+            </div>
+        </div>
+        <div class="row  border border-dark ">
+            <div class="col-7 d-flex justify-content-center "> Wind kph:</div>
+            <div class="col-5 d-flex justify-content-right"><%= wholeObj.current.wind_kph %></div>
+            </div>
+            <div class="row  border border-dark ">
+                <div class="col-7 d-flex justify-content-center "> Gust_kph:</div>
+                <div class="col-5 d-flex justify-content-right"><%= wholeObj.current.gust_kph %>
+                </div>
+            </div>
+            <div class="row  border border-dark ">
+                <div class="col-7 d-flex justify-content-center "> Wind direction:</div>
+                <div class="col-5 d-flex justify-content-right"><%= wholeObj.current.wind_dir %>
+                </div>
+            </div>
+                <div class="row  border border-dark ">
+                    <div class="col-7 d-flex justify-content-center "> Humidity:</div>
+                    <div class="col-5 d-flex justify-content-right"><%= wholeObj.current.humidity %>
+                    </div>
+                    
+        </div>
+       
            </p>
           </article>
         
