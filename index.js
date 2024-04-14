@@ -34,7 +34,11 @@ app.post("/", async(req,res) =>{
   console.log(`lat: + ${lat}`);
   console.log(`lon: + ${lng}`);
 //  call weather api
- getWeatherData(lat,lng);
+  const jsObject = await getWeatherData(lat,lng);
+  console.log(jsObject);
+
+//  generate index.ejs
+res.render('index.ejs',{wholeObj: jsObject});
 
  } catch (error) {
   console.error(error.message);
@@ -42,9 +46,8 @@ app.post("/", async(req,res) =>{
   
 });
 
-async function getWeatherData(req,res){
-  let latitude = req;
-  let longitude = res;
+async function getWeatherData(latitude,longitude){
+  
   const options = {
     method: 'GET',
     url: 'https://weatherapi-com.p.rapidapi.com/current.json',
@@ -57,12 +60,14 @@ async function getWeatherData(req,res){
   
   try {
     const response = await axios.request(options);
-    const responseString = JSON.stringify(response.data);
-    const jsObject = JSON.parse(responseString);
-    res.render("index.ejs",{wholeObj:jsObject})
+return response.data;
+    // const responseString = JSON.stringify(response.data);
+    // const jsObject = JSON.parse(responseString);
+    // res.render("index.ejs",{wholeObj:jsObject})
     // console.log(jsObject)
-    
-  } catch (error) {
+   
+  } 
+  catch (error) {
     console.error(error);
   }
 
