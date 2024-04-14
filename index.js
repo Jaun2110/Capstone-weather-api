@@ -26,12 +26,15 @@ app.post("/", async(req,res) =>{
   // console.log(response);
   const resultString = JSON.stringify(response.data);
    const resultObj = JSON.parse(resultString);
-  const {lat,lng} = resultObj.results[0].geometry;
+  let {lat,lng} = resultObj.results[0].geometry;
   // console.log(resultObj.results[0].geometry.lng);
+  // remove the plus 
+  lat = String(lat).replace('+','').trim();
+  lng = String(lng).replace('+','').trim();
   console.log(`lat: + ${lat}`);
   console.log(`lon: + ${lng}`);
 //  call weather api
-getWeatherData(lat,lng);
+ getWeatherData(lat,lng);
 
  } catch (error) {
   console.error(error.message);
@@ -39,7 +42,9 @@ getWeatherData(lat,lng);
   
 });
 
-async function getWeatherData(latitude,longitude){
+async function getWeatherData(req,res){
+  let latitude = req;
+  let longitude = res;
   const options = {
     method: 'GET',
     url: 'https://weatherapi-com.p.rapidapi.com/current.json',
