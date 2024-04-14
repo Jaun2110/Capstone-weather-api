@@ -16,10 +16,42 @@ app.get("/", (req,res) =>{
 
 app.post("/", async(req,res) =>{
   // console.log(`${req.body.latitude},${req.body.longitude}`)
+ const API_Key = '0148c874ffdd49eebd1ddbfb0dcddb78';
+ let city = req.body.city;
+ let country = req.body.country;
+ const API_URL = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(city)},${encodeURIComponent(country)}&key=${API_Key}`;
+ try {
+  
+  const response = await axios.get(API_URL);
+  // console.log(response);
+  const resultString = JSON.stringify(response.data);
+   const resultObj = JSON.parse(resultString);
+  let {lat,lng} = resultObj.results[0].geometry;
+  // console.log(resultObj.results[0].geometry.lng);
+  // remove the plus 
+  lat = String(lat).replace('+','').trim();
+  lng = String(lng).replace('+','').trim();
+  console.log(`lat: + ${lat}`);
+  console.log(`lon: + ${lng}`);
+//  call weather api
+  const jsObject = await getWeatherData(lat,lng);
+  console.log(jsObject);
+
+//  generate index.ejs
+res.render('index.ejs',{wholeObj: jsObject});
+
+ } catch (error) {
+  console.error(error.message);
+ }
+  
+});
+
+async function getWeatherData(latitude,longitude){
+  
   const options = {
     method: 'GET',
     url: 'https://weatherapi-com.p.rapidapi.com/current.json',
-    params: {q: `${req.body.latitude},${req.body.longitude}`},
+    params: {q: `${latitude},${longitude}`},
     headers: {
       'X-RapidAPI-Key': 'c93cedb6bfmshdbd8f5598e8443cp18397ejsn066c2e325810',
       'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
@@ -28,18 +60,18 @@ app.post("/", async(req,res) =>{
   
   try {
     const response = await axios.request(options);
-    const responseString = JSON.stringify(response.data);
-    const jsObject = JSON.parse(responseString);
-    res.render("index.ejs",{wholeObj:jsObject})
+return response.data;
+    // const responseString = JSON.stringify(response.data);
+    // const jsObject = JSON.parse(responseString);
+    // res.render("index.ejs",{wholeObj:jsObject})
     // console.log(jsObject)
-    
-  } catch (error) {
+   
+  } 
+  catch (error) {
     console.error(error);
   }
-  
-});
 
-
+}
 
 
 
